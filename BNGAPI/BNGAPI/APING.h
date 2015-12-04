@@ -95,7 +95,7 @@ extern const struct BNGSupportedCurrencyCodes {
  * for details on requesting an application key.
  * @param applicationKey the application key to send with each API request.
  */
-- (void)registerApplicationKey:(NSString*)applicationKey;
+- (void)registerApplicationKey:(nonnull NSString *)applicationKey __deprecated_msg("use -setApplicationKey: instead");
 
 /**
  * This method (or registerApplicationKey:applicationKey) <b>MUST</b> be invoked before accessing any of the API-NG services.
@@ -103,6 +103,7 @@ extern const struct BNGSupportedCurrencyCodes {
  * @param ssoKey a ssoKey is like a session token in that it allows Betfair's API servers uniquely identify a particular user.
  * @see `loginWithUserName` in `BNGAccount` for details on how to authenticate with Betfair's API servers.
  */
-- (void)registerApplicationKey:(NSString *)applicationKey ssoKey:(NSString *)ssoKey;
+- (void)registerApplicationKey:(nonnull NSString *)applicationKey
+                        ssoKey:(nullable NSString *)ssoKey __deprecated_msg("use -setApplicationKey: and -setSsoKey: instead");
 
 @end

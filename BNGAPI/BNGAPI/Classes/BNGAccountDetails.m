@@ -46,23 +46,36 @@
     
     if (!completionBlock) return;
     
-    NSURL *url = [NSURL betfairNGAccountURLForOperation:BNGAccountOperation.getAccountDetails];
-    BNGMutableURLRequest *request = [BNGMutableURLRequest requestWithURL:url];
+    NSURL *const url = [NSURL betfairNGAccountURLForOperation:BNGAccountOperation.getAccountDetails];
+    
+    BNGMutableURLRequest *const request = [BNGMutableURLRequest requestWithURL:url];
+    
     [NSURLConnection sendAsynchronousJSONRequest:request
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response, id JSONData, NSError *connectionError) {
                                    
-                                   if (connectionError) {
+                                   if (connectionError)
+                                   {
                                        completionBlock(nil, connectionError, [[BNGAPIError alloc] initWithURLResponse:response]);
-                                   } else if ([JSONData isKindOfClass:[NSDictionary class]]) {
-                                       NSDictionary *data = JSONData;
-                                       if (!data.isBNGError) {
-                                           completionBlock([BNGAPIResponseParser parseBNGAccountDetailsFromResponse:JSONData], connectionError, nil);
-                                       } else {
-                                           completionBlock(nil, [[BNGAPIError alloc] initWithAPINGErrorResponseDictionary:JSONData], nil);
+                                   }
+                                   else if ([JSONData isKindOfClass:[NSDictionary class]])
+                                   {
+                                       NSDictionary *const data = JSONData;
+                                       
+                                       if ([data isBNGError])
+                                       {
+                                           completionBlock(nil, nil, [[BNGAPIError alloc] initWithAPINGErrorResponseDictionary:data]);
                                        }
-                                   } else {
-                                       completionBlock(nil, connectionError, [[BNGAPIError alloc] initWithDomain:BNGErrorDomain code:BNGErrorCodeNoData userInfo:nil]);
+                                       else
+                                       {
+                                           completionBlock([BNGAPIResponseParser parseBNGAccountDetailsFromResponse:data], connectionError, nil);
+                                       }
+                                   }
+                                   else
+                                   {
+                                       completionBlock(nil, nil, [[BNGAPIError alloc] initWithDomain:BNGErrorDomain
+                                                                                                code:BNGErrorCodeNoData
+                                                                                            userInfo:nil]);
                                    }
                                }];
 }
@@ -71,7 +84,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ BNGAccountDetails [currencyCode: %@] [firstName: %@] [lastName: %@] [localeCode: %@] [region: %@] [discountRate: %@] [pointsBalance: %ld]",
+    return [NSString stringWithFormat:@"%@ BNGAccountDetails [currencyCode: %@] [firstName: %@] [lastName: %@] [localeCode: %@] [region: %@] [discountRate: %@] [pointsBalance: %@]",
             [super description],
             self.currencyCode,
             self.firstName,
@@ -79,7 +92,7 @@
             self.localeCode,
             self.region,
             self.discountRate,
-            (long)self.pointsBalance];
+            @(self.pointsBalance)];
 }
 
 @end

@@ -55,10 +55,10 @@
  * @param completionBlock executed once the API call returns.
  * @return `BNGMutableURLRequest` the request sent to log in.
  */
-+ (BNGMutableURLRequest *)loginWithUserName:(NSString *)username
-                                   password:(NSString *)password
-                                    product:(NSString *)product
-                                redirectUrl:(NSString *)redirectUrl
-                            completionBlock:(BNGLoginCompletionBlock)completionBlock;
++ (BNGMutableURLRequest *)loginWithUserName:(nonnull NSString *)username
+                                   password:(nonnull NSString *)password
+                                    product:(nonnull NSString *)product
+                                redirectUrl:(nonnull NSString *)redirectUrl
+                            completionBlock:(nonnull BNGLoginCompletionBlock)completionBlock;
 
 @end

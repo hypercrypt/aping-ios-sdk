@@ -40,8 +40,8 @@
  * provided, a default queue is used.
  * @param completionHandler executed once the `sendAsynchronousRequest` method returns a response.
  */
-+ (void)sendAsynchronousJSONRequest:(NSURLRequest *)request
-                              queue:(NSOperationQueue *)queue
-                  completionHandler:(void (^)(NSURLResponse *response, id JSONObject, NSError *error))handler;
++ (void)sendAsynchronousJSONRequest:(nonnull NSURLRequest *)request
+                              queue:(nullable NSOperationQueue *)queue
+                  completionHandler:(void (^_Nonnull)(NSURLResponse *_Nullable response, id _Nullable JSONObject, NSError *_Nullable error))handler;
 
 @end

@@ -34,7 +34,11 @@
 
 - (BOOL)isBNGError
 {
-    return self[BNGErrorFaultCodeIdentifier] || self[BNGErrorFaultStringIdentifier] || self[BNGErrorErrorStringIdentifier];
+    return (
+        self[BNGErrorFaultCodeIdentifier]   ||
+        self[BNGErrorFaultStringIdentifier] ||
+        self[BNGErrorErrorStringIdentifier]
+    );
 }
 
 @end
