@@ -28,7 +28,7 @@
 
 #import "APING.h"
 
-static const struct BNGSupportedLocales BNGSupportedLocales = {
+const struct BNGSupportedLocales BNGSupportedLocales = {
     .en = @"en",
     .da = @"da",
     .sv = @"sv",
@@ -46,7 +46,7 @@ static const struct BNGSupportedLocales BNGSupportedLocales = {
     .th = @"th",
 };
 
-static const struct BNGSupportedCurrencyCodes BNGSupportedCurrencyCodes = {
+const struct BNGSupportedCurrencyCodes BNGSupportedCurrencyCodes = {
     .gbp = @"GBP",
     .eur = @"EUR",
     .aud = @"AUD",

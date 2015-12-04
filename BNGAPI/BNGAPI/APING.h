@@ -28,7 +28,7 @@
 
 #import <Foundation/Foundation.h>
 
-struct BNGSupportedLocales {
+extern const struct BNGSupportedLocales {
     __unsafe_unretained NSString *en;
     __unsafe_unretained NSString *da;
     __unsafe_unretained NSString *sv;
@@ -44,9 +44,9 @@ struct BNGSupportedLocales {
     __unsafe_unretained NSString *fr;
     __unsafe_unretained NSString *pt;
     __unsafe_unretained NSString *th;
-};
+} BNGSupportedLocales;
 
-struct BNGSupportedCurrencyCodes {
+extern const struct BNGSupportedCurrencyCodes {
     __unsafe_unretained NSString *gbp;
     __unsafe_unretained NSString *eur;
     __unsafe_unretained NSString *aud;
@@ -56,7 +56,7 @@ struct BNGSupportedCurrencyCodes {
     __unsafe_unretained NSString *dkk;
     __unsafe_unretained NSString *sgd;
     __unsafe_unretained NSString *hkd;
-};
+} BNGSupportedCurrencyCodes;
 
 /**
  * Singleton object for registering application keys, sso keys (session tokens) and locales. `APING` is your one-stop-shop for configurating how you interact with Betfair's APING services.
