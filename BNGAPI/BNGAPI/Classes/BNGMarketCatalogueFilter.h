@@ -28,12 +28,16 @@
 
 #import "BNGMarketFilter.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Allows client code to filter out specific `BNGMarketCatalogue`s when executing searches.
  */
 @interface BNGMarketCatalogueFilter : BNGMarketFilter <BNGDictionaryRepresentation>
 
 @property (nonatomic) NSNumber *maxResults;
-@property (nonatomic, copy) NSArray *marketProjection;
+@property (nonatomic, copy) NSArray<NSString *> *marketProjection;
 
 @end
+
+NS_ASSUME_NONNULL_END

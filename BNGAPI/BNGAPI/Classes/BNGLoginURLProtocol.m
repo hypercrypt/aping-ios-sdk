@@ -93,52 +93,56 @@ static NSString *BFLoginURLScheme;
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
-    if ([request.URL.scheme isEqualToString:BFLoginURLScheme]) {
-        
+    if ([request.URL.scheme isEqualToString:BFLoginURLScheme])
+    {
         return YES;
-        
-    } else if ([request.URL.absoluteString hasPrefix:[NSString stringWithFormat:@"%@/view/login", BNGBaseLoginString]]) {
-        
-        static NSDictionary *errorCodes;
+    }
+    else if ([request.URL.absoluteString hasPrefix:[NSString stringWithFormat:@"%@/view/login", BNGBaseLoginString]])
+    {
+        static NSDictionary<NSString *, NSNumber *> *errorCodes;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
 
-            errorCodes = @{APINGLoginErrors.ACCOUNT_ALREADY_LOCKED: @YES,
-                           APINGLoginErrors.ACCOUNT_NOW_LOCKED: @YES,
-                           APINGLoginErrors.AGENT_CLIENT_MASTER: @YES,
-                           APINGLoginErrors.AGENT_CLIENT_MASTER_SUSPENDED: @YES,
-                           APINGLoginErrors.BETTING_RESTRICTED_LOCATION: @YES,
-                           APINGLoginErrors.CERT_AUTH_REQUIRED: @YES,
-                           APINGLoginErrors.CHANGE_PASSWORD_REQUIRED: @YES,
-                           APINGLoginErrors.CLOSED: @YES,
-                           APINGLoginErrors.DANISH_AUTHORIZATION_REQUIRED: @YES,
-                           APINGLoginErrors.DENMARK_MIGRATION_REQUIRED: @YES,
-                           APINGLoginErrors.DUPLICATE_CARDS: @YES,
-                           APINGLoginErrors.INVALID_CONNECTIVITY_TO_REGULATOR_DK: @YES,
-                           APINGLoginErrors.INVALID_CONNECTIVITY_TO_REGULATOR_IT: @YES,
-                           APINGLoginErrors.INVALID_USERNAME_OR_PASSWORD: @YES,
-                           APINGLoginErrors.ITALIAN_CONTRACT_ACCEPTANCE_REQUIRED: @YES,
-                           APINGLoginErrors.KYC_SUSPEND: @YES,
-                           APINGLoginErrors.NOT_AUTHORIZED_BY_REGULATOR_DK: @YES,
-                           APINGLoginErrors.NOT_AUTHORIZED_BY_REGULATOR_IT: @YES,
-                           APINGLoginErrors.PENDING_AUTH: @YES,
-                           APINGLoginErrors.PERSONAL_MESSAGE_REQUIRED: @YES,
-                           APINGLoginErrors.SECURITY_QUESTION_WRONG_3X: @YES,
-                           APINGLoginErrors.SECURITY_RESTRICTED_LOCATION: @YES,
-                           APINGLoginErrors.SELF_EXCLUDED: @YES,
-                           APINGLoginErrors.SPAIN_MIGRATION_REQUIRED: @YES,
-                           APINGLoginErrors.SPANISH_TERMS_ACCEPTANCE_REQUIRED: @YES,
-                           APINGLoginErrors.SUSPENDED: @YES,
-                           APINGLoginErrors.TELBET_TERMS_CONDITIONS_NA: @YES,
-                           APINGLoginErrors.TRADING_MASTER: @YES,
-                           APINGLoginErrors.TRADING_MASTER_SUSPENDED: @YES,};
+            errorCodes = @{
+                APINGLoginErrors.ACCOUNT_ALREADY_LOCKED: @YES,
+                APINGLoginErrors.ACCOUNT_NOW_LOCKED: @YES,
+                APINGLoginErrors.AGENT_CLIENT_MASTER: @YES,
+                APINGLoginErrors.AGENT_CLIENT_MASTER_SUSPENDED: @YES,
+                APINGLoginErrors.BETTING_RESTRICTED_LOCATION: @YES,
+                APINGLoginErrors.CERT_AUTH_REQUIRED: @YES,
+                APINGLoginErrors.CHANGE_PASSWORD_REQUIRED: @YES,
+                APINGLoginErrors.CLOSED: @YES,
+                APINGLoginErrors.DANISH_AUTHORIZATION_REQUIRED: @YES,
+                APINGLoginErrors.DENMARK_MIGRATION_REQUIRED: @YES,
+                APINGLoginErrors.DUPLICATE_CARDS: @YES,
+                APINGLoginErrors.INVALID_CONNECTIVITY_TO_REGULATOR_DK: @YES,
+                APINGLoginErrors.INVALID_CONNECTIVITY_TO_REGULATOR_IT: @YES,
+                APINGLoginErrors.INVALID_USERNAME_OR_PASSWORD: @YES,
+                APINGLoginErrors.ITALIAN_CONTRACT_ACCEPTANCE_REQUIRED: @YES,
+                APINGLoginErrors.KYC_SUSPEND: @YES,
+                APINGLoginErrors.NOT_AUTHORIZED_BY_REGULATOR_DK: @YES,
+                APINGLoginErrors.NOT_AUTHORIZED_BY_REGULATOR_IT: @YES,
+                APINGLoginErrors.PENDING_AUTH: @YES,
+                APINGLoginErrors.PERSONAL_MESSAGE_REQUIRED: @YES,
+                APINGLoginErrors.SECURITY_QUESTION_WRONG_3X: @YES,
+                APINGLoginErrors.SECURITY_RESTRICTED_LOCATION: @YES,
+                APINGLoginErrors.SELF_EXCLUDED: @YES,
+                APINGLoginErrors.SPAIN_MIGRATION_REQUIRED: @YES,
+                APINGLoginErrors.SPANISH_TERMS_ACCEPTANCE_REQUIRED: @YES,
+                APINGLoginErrors.SUSPENDED: @YES,
+                APINGLoginErrors.TELBET_TERMS_CONDITIONS_NA: @YES,
+                APINGLoginErrors.TRADING_MASTER: @YES,
+                APINGLoginErrors.TRADING_MASTER_SUSPENDED: @YES,
+            };
         });
         
-        NSString *httpBodyParameter = request.httpBodyDictionary[@"errorCode"] ? request.httpBodyDictionary[@"errorCode"] : @"";
-        NSString *httpQueryParameter = request.httpQueryParams[@"errorCode"] ? request.httpQueryParams[@"errorCode"] : @"";
+        NSString *httpBodyParameter  = request.httpBodyDictionary[@"errorCode"] ?: @"";
+        NSString *httpQueryParameter = request.httpQueryParams[@"errorCode"]    ?: @"";
         
-        return (errorCodes[httpBodyParameter] || errorCodes[httpQueryParameter]);
-    } else {
+        return (errorCodes[httpBodyParameter].boolValue || errorCodes[httpQueryParameter].boolValue);
+    }
+    else
+    {
         return NO;
     }
 }

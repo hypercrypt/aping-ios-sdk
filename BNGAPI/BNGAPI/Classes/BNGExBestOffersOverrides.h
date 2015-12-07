@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, BNGRollupModel) {
 
 /**
  * The volume limit to use when rolling up returned sizes. The exact definition of the limit depends on the
- * `BNGRollupModel`. If no limit is provided it will use minimum stake as default the value.
+ * `BNGRollupModel`. If no limit is provided it will use minimum stake as the default value.
  */
 @property (nonatomic) NSInteger rollupLimit;
 

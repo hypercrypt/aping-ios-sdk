@@ -55,6 +55,7 @@ typedef NS_ENUM(NSInteger, BNGMatchProjection) {
 
 @class BNGMarketFilter;
 @class BNGPriceProjection;
+@class BNGRunner;
 
 #import "BNGOrder.h"
 
@@ -142,7 +143,7 @@ typedef NS_ENUM(NSInteger, BNGMatchProjection) {
 /**
  * Collection of `BNGRunner`s associated with this `BNGMarketBook`.
  */
-@property (nonatomic, copy) NSArray *runners;
+@property (nonatomic, copy) NSArray<BNGRunner *> *runners;
 
 #pragma mark API Calls
 

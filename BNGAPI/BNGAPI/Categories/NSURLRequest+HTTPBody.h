@@ -36,12 +36,12 @@
 /**
  * Returns the current set of body parameters (UTF-8 decoded) in a handy `NSDictionary`
  */
-@property (nonatomic, readonly) NSDictionary *httpBodyDictionary;
+@property (nonatomic, readonly) NSDictionary<NSString *, NSString *> *httpBodyDictionary;
 
 /**
  * Returns the current set of query string parameters (UTF-8 decoded) in a handy `NSDictionary`
  */
-@property (nonatomic, readonly) NSDictionary *httpQueryParams;
+@property (nonatomic, readonly) NSDictionary<NSString *, NSString *> *httpQueryParams;
 
 @end
 

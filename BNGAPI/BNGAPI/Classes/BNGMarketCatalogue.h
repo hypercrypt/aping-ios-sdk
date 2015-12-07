@@ -26,7 +26,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 #pragma mark Enums
 
@@ -49,6 +49,7 @@ typedef NS_ENUM(NSInteger, BNGMarketProjection) {
 @class BNGEventType;
 @class BNGMarketCatalogueFilter;
 @class BNGMarketCatalogueDescription;
+@class BNGRunner;
 
 /**
  * Has all the information you need to know about a market.
@@ -94,14 +95,15 @@ typedef NS_ENUM(NSInteger, BNGMarketProjection) {
 /**
  * Collection of `BNGRunner`s associated with this market.
  */
-@property (nonatomic, copy) NSArray *runners;
+@property (nonatomic, copy) NSArray<BNGRunner *> *runners;
 
 /**
  * Given a BNGMarketFilter, this method finds a list of BNGMarketCatalogues.
  * @param marketCatalogueFilter used to filter out certain types of BNGMarketCatalogues from the response
  * @param completionBlock executed once the API call returns.
  */
-+ (void)listMarketCataloguesWithFilter:(BNGMarketCatalogueFilter *)marketCatalogueFilter completionBlock:(BNGResultsCompletionBlock)completionBlock;
++ (void)listMarketCataloguesWithFilter:(BNGMarketCatalogueFilter *)marketCatalogueFilter
+                       completionBlock:(BNGResultsCompletionBlock)completionBlock;
 
 /**
  * Given an `BNGMarketProjection` projection, this method returns the corresponding NSString

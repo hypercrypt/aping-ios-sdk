@@ -28,6 +28,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern const struct BNGSupportedLocales {
     __unsafe_unretained NSString *en;
     __unsafe_unretained NSString *da;
@@ -66,22 +68,22 @@ extern const struct BNGSupportedCurrencyCodes {
 /**
  * This is the application key the developer should request from https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Getting+Started+with+API-NG. This key needs to be set before you can access any API calls.
  */
-@property (nonatomic, copy) NSString *applicationKey;
+@property (nonatomic, copy, nullable) NSString *applicationKey;
 
 /**
  * This is the SSO token the developer receives after the user authenticates with Betfair.
  */
-@property (nonatomic, copy) NSString *ssoKey;
+@property (nonatomic, copy, nullable) NSString *ssoKey;
 
 /**
  * A locale parameter is sent with each API call. See `BNGSupportedLocales` for details on what locales are supported. Set this parameter if you want to have error codes or event names, market names, competition names in a particular language.
  */
-@property (nonatomic, copy) NSString *locale;
+@property (nonatomic, copy, null_resettable) NSString *locale;
 
 /**
  * A currencyCode parameter is sent with each API call. See `BNGSupportedCurrencyCodes` for details on what currency codes are supported. It's important to set this parameter to the user's currency when they log in to ensure that liquidity is communicated in the correct currency.
  */
-@property (nonatomic, copy) NSString *currencyCode;
+@property (nonatomic, copy, null_resettable) NSString *currencyCode;
 
 /**
  * Singleton accessor for `APING`
@@ -95,7 +97,7 @@ extern const struct BNGSupportedCurrencyCodes {
  * for details on requesting an application key.
  * @param applicationKey the application key to send with each API request.
  */
-- (void)registerApplicationKey:(nonnull NSString *)applicationKey __deprecated_msg("use -setApplicationKey: instead");
+- (void)registerApplicationKey:(NSString *)applicationKey __deprecated_msg("use -setApplicationKey: instead");
 
 /**
  * This method (or registerApplicationKey:applicationKey) <b>MUST</b> be invoked before accessing any of the API-NG services.
@@ -103,7 +105,9 @@ extern const struct BNGSupportedCurrencyCodes {
  * @param ssoKey a ssoKey is like a session token in that it allows Betfair's API servers uniquely identify a particular user.
  * @see `loginWithUserName` in `BNGAccount` for details on how to authenticate with Betfair's API servers.
  */
-- (void)registerApplicationKey:(nonnull NSString *)applicationKey
+- (void)registerApplicationKey:(NSString *)applicationKey
                         ssoKey:(nullable NSString *)ssoKey __deprecated_msg("use -setApplicationKey: and -setSsoKey: instead");
 
 @end
+
+NS_ASSUME_NONNULL_END

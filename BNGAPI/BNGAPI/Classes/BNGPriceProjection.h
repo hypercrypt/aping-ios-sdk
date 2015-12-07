@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, BNGPriceData) {
  */
 @interface BNGPriceProjection : NSObject<BNGDictionaryRepresentation>
 
-@property (nonatomic, copy) NSArray *priceData;
+@property (nonatomic, copy) NSArray<NSString *> *priceData;
 @property (nonatomic) BNGExBestOffersOverrides *exBestOffersOverrides;
 
 /**

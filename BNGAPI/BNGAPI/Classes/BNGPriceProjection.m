@@ -36,19 +36,27 @@
 
 - (NSDictionary *)dictionaryRepresentation
 {
-    NSMutableDictionary *dictionaryRepresentation = [NSMutableDictionary dictionary];
-    if (self.priceData) {
-        [dictionaryRepresentation setObject:self.priceData forKey:@"priceData"];
+    NSMutableDictionary<NSString *, id> *dictionaryRepresentation = [NSMutableDictionary dictionary];
+    if (self.priceData)
+    {
+        dictionaryRepresentation[@"priceData"] = self.priceData;
     }
-    if (self.exBestOffersOverrides) {
-        [dictionaryRepresentation setObject:[self.exBestOffersOverrides dictionaryRepresentation] forKey:@"exBestOffersOverrides"];
+    
+    if (self.exBestOffersOverrides)
+    {
+        dictionaryRepresentation[@"exBestOffersOverrides"] = self.exBestOffersOverrides.dictionaryRepresentation;
     }
-    if (self.virtualise) {
-        [dictionaryRepresentation setObject:@"true" forKey:@"virtualise"];
+    
+    if (self.virtualise)
+    {
+        dictionaryRepresentation[@"virtualise"] = @"true";
     }
-    if (self.rolloverStakes) {
-        [dictionaryRepresentation setObject:@"true" forKey:@"rolloverStakes"];
+    
+    if (self.rolloverStakes)
+    {
+        dictionaryRepresentation[@"rolloverStakes"] = @"true";
     }
+    
     return dictionaryRepresentation;
 }
 

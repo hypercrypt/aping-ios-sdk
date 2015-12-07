@@ -49,7 +49,8 @@
     [BNGMarketBook listMarketBooksForMarketIds:marketIds
                                priceProjection:priceProjection
                                orderProjection:BNGOrderProjectionUnknown
-                               matchProjection:BNGMatchProjectionUnknown completionBlock:completionBlock];
+                               matchProjection:BNGMatchProjectionUnknown
+                               completionBlock:completionBlock];
 }
 
 + (void)listMarketBooksForMarketIds:(NSArray *)marketIds

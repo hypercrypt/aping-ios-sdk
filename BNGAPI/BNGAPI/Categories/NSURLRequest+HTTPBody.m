@@ -32,18 +32,18 @@
 
 @implementation NSURLRequest (HTTPBody)
 
-- (NSDictionary *)httpQueryParams
+- (NSDictionary<NSString *, NSString *> *)httpQueryParams
 {
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSString *> *parameters = [NSMutableDictionary dictionary];
     
     for (NSString *queryItem in [self.URL.query componentsSeparatedByString:@"&"]) {
         
-        NSArray *keyValuePair = [queryItem componentsSeparatedByString:@"="];
+        NSArray<NSString *> *keyValuePair = [queryItem componentsSeparatedByString:@"="];
         
         if (keyValuePair.count == 2) {
             
-            NSString *key =     [[keyValuePair objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSString *value =   [[keyValuePair objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *key =     [keyValuePair[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *value =   [keyValuePair[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
             [parameters setObject:value forKey:key];
         }
@@ -52,15 +52,15 @@
     return [parameters copy];
 }
 
-- (NSDictionary *)httpBodyDictionary
+- (NSDictionary<NSString *, NSString *> *)httpBodyDictionary
 {
     NSString *httpBodyString = [[NSString alloc] initWithData:self.HTTPBody encoding:NSUTF8StringEncoding];
     
-    NSArray *parts = [httpBodyString componentsSeparatedByString:@"&"];
-    NSMutableDictionary *bodyDictionary = [[NSMutableDictionary alloc] initWithCapacity:parts.count];
+    NSArray<NSString *> *parts = [httpBodyString componentsSeparatedByString:@"&"];
+    NSMutableDictionary<NSString *, NSString *> *bodyDictionary = [[NSMutableDictionary alloc] initWithCapacity:parts.count];
     
     for (NSString *part in parts) {
-        NSArray *keyValueArray = [part componentsSeparatedByString:@"="];
+        NSArray<NSString *> *keyValueArray = [part componentsSeparatedByString:@"="];
         switch (keyValueArray.count) {
             case 1: {
                 bodyDictionary[keyValueArray[0]] = @"";
