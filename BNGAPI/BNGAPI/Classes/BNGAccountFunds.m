@@ -47,6 +47,8 @@
     
     NSURL *url = [NSURL betfairNGAccountURLForOperation:BNGAccountOperation.getAccountFunds];
     BNGMutableURLRequest *request = [BNGMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST";
+    
     [NSURLConnection sendAsynchronousJSONRequest:request
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response, id JSONData, NSError *connectionError) {
