@@ -26,7 +26,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+@class BNGPriceSize;
 
 /**
  * Includes all exchange prices for a `BNGRunner`. Includes back, lay and volume.
@@ -36,16 +38,16 @@
 /**
  * Collection of `BNGPriceSize` objects which are `BNGSideBack` prices.
  */
-@property (nonatomic, copy) NSArray *availableToBack;
+@property (nonatomic, copy) NSArray<BNGPriceSize *> *availableToBack;
 
 /**
  * Collection of `BNGPriceSize` objects which are `BNGSideLay` prices.
  */
-@property (nonatomic, copy) NSArray *availableToLay;
+@property (nonatomic, copy) NSArray<BNGPriceSize *> *availableToLay;
 
 /**
  * Collection of `BNGPriceSize` objects which represent the traded volume for the runner.
  */
-@property (nonatomic, copy) NSArray *tradedVolume;
+@property (nonatomic, copy) NSArray<BNGPriceSize *> *tradedVolume;
 
 @end
