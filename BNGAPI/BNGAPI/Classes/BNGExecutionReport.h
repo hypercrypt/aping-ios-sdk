@@ -26,7 +26,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+@class BNGPlaceInstructionReport;
 
 #pragma mark Enums
 
@@ -98,7 +100,7 @@ typedef NS_ENUM(NSInteger, BNGExecutionReportErrorCode) {
  * Collection of reports which allows the client code understand whether
  * each order placed on the market was successfully executed or not.
  */
-@property (nonatomic, copy) NSArray *instructionReports;
+@property (nonatomic, copy) NSArray<BNGPlaceInstructionReport *> *instructionReports;
 
 #pragma mark Transformers
 

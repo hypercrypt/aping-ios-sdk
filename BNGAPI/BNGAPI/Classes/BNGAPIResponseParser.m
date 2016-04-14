@@ -149,6 +149,7 @@ struct BNGRunnerField {
     __unsafe_unretained NSString *farPrice;
     __unsafe_unretained NSString *layLiabilityTaken;
     __unsafe_unretained NSString *nearPrice;
+    __unsafe_unretained NSString *runnerName;
 };
 
 struct BNGMarketCatalogueField {
@@ -349,6 +350,7 @@ static const struct BNGRunnerField BNGRunnerField = {
     .farPrice = @"farPrice",
     .layLiabilityTaken = @"layLiabilityTaken",
     .nearPrice = @"nearPrice",
+    .runnerName = @"runnerName",
 };
 
 static const struct BNGCompetitionField BNGCompetitionField = {
@@ -767,6 +769,9 @@ static const struct BNGMarketProfitAndLossField BNGMarketProfitAndLossField = {
     if (startingPrices) {
         runner.startingPrices = [BNGAPIResponseParser parseBNGStartingPricesFromResponse:startingPrices];
     }
+    
+    runner.name = response[BNGRunnerField.runnerName];
+    
     return runner;
 }
 

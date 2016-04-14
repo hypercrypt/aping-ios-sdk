@@ -518,10 +518,8 @@ static const struct BNGPlaceOrderParameters BNGPlaceOrderParameters = {
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[BNGPlaceOrderParameters.marketId] = marketId;
+    parameters[BNGPlaceOrderParameters.customerRef] = customerRef ?: [[NSUUID UUID].UUIDString stringByReplacingOccurrencesOfString:@"-" withString:@""];
     parameters[BNGPlaceOrderParameters.instructions] = [BNGPlaceInstruction dictionaryRepresentationsForBNGPlaceInstructions:instructions];
-    if (customerRef) {
-        parameters[BNGPlaceOrderParameters.customerRef] = customerRef;
-    }
     return [parameters copy];
 }
 

@@ -28,6 +28,8 @@
 
 #import "NSURL+BNG.h"
 
+@class BNGPlaceInstruction;
+
 #pragma mark Enums
 
 /**
@@ -233,7 +235,7 @@ typedef NS_ENUM(NSInteger, BNGOrderSortDir) {
  * @param completionBlock executed once the API call returns.
  */
 + (void)placeOrdersForMarketId:(NSString *)marketId
-                  instructions:(NSArray *)instructions
+                  instructions:(NSArray<BNGPlaceInstruction *> *)instructions
                    customerRef:(NSString *)customerRef
                completionBlock:(BNGPlaceOrdersCompletionBlock)completionBlock;
 

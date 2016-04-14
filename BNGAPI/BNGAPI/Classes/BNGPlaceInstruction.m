@@ -42,9 +42,11 @@
         dictionaryRepresentation[@"orderType"] = [BNGOrder stringFromOrderType:self.orderType];
     }
     
-    dictionaryRepresentation[@"selectionId"] = @(self.selectionId);
+    dictionaryRepresentation[@"selectionId"] = @(self.selectionId).stringValue;
     
-    if (self.handicap && ![self.handicap isEqual:[NSDecimalNumber zero]]) {
+    if (!self.handicap || [self.handicap isEqual:[NSDecimalNumber zero]]) {
+        dictionaryRepresentation[@"handicap"] = @"0";
+    } else {
         // TODO: NSNumberFormatter
         dictionaryRepresentation[@"handicap"] = [NSString stringWithFormat:@"%.2f", [self.handicap doubleValue]];
     }
@@ -83,7 +85,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ BNGPlaceInstruction [orderType %@] [selectionId %lld] [handicap %@] [side %@] [limitOrder %@] [limitOnCloseOrder %@] [marketOnCloseOrder %@]", [super description], [BNGOrder stringFromOrderType:self.orderType], self.selectionId, self.handicap, [BNGOrder stringFromSide:self.side], self.limitOrder, self.limitOnCloseOrder, self.marketOnCloseOrder];
+    return [NSString stringWithFormat:@"%@ [orderType %@] [selectionId %lld] [handicap %@] [side %@] [limitOrder %@] [limitOnCloseOrder %@] [marketOnCloseOrder %@]", [super description], [BNGOrder stringFromOrderType:self.orderType], self.selectionId, self.handicap, [BNGOrder stringFromSide:self.side], self.limitOrder, self.limitOnCloseOrder, self.marketOnCloseOrder];
 }
 
 @end

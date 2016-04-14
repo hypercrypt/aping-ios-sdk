@@ -84,6 +84,11 @@ struct BNGRunnerMetadata {
 @interface BNGRunner : NSObject
 
 /**
+ * The display name for the runner
+ */
+@property (nonatomic, copy) NSString *name;
+
+/**
  * Unique identifier for the runner. Use this identifier when placing bets on specific runners.
  */
 @property (nonatomic) long long selectionId;
